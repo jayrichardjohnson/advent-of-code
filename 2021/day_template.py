@@ -1,23 +1,34 @@
 #!/usr/bin/env python3 
-
+from dataclasses import dataclass
 from pathlib import Path
-from typing import List
+from typing import Counter, Dict, List, NamedTuple
 
-def part1(input): 
+@dataclass
+class Something:
+    input_value: List[int] 
 
+    def part1(self) -> int:
+        return None
 
-    return 'not done'
+    def part2(self) -> int:
+        return None
 
-
-def part2(input):
-
-
-    return 'not done'
+    @classmethod
+    def from_file(cls, file: str):
+        inputs = [] 
+        return cls(inputs)
 
 
 if __name__ == "__main__":
     stem: str = Path(__file__).stem
-    input_file = Path("data") / (stem + ".txt")
-    input: List[str] = input_file.read_text().splitlines()
+    
+    test_file = Path("examples") / ("test_" + stem + ".txt")
+    test_something = Something.from_file(test_file)
+    assert test_something.part1() == None
+    assert test_something.part2() == None
 
-    print(part1(input), part2(input))
+    input_file = Path("inputs") / (stem + ".txt")
+    something = Something.from_file(input_file)
+
+    print(f"part1: {something.part1()}")
+    print(f"part2: {something.part2()}")
